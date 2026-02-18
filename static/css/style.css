@@ -1,0 +1,506 @@
+/* =====================================================
+   CSS STYLESHEET FOR QUIZ APPLICATION
+   This file contains all the styling for the quiz app
+   ===================================================== */
+
+/* =====================================================
+   BASIC RESET & GLOBAL STYLES
+   ===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+    min-height: 400px;
+}
+
+/* =====================================================
+   SCREEN MANAGEMENT (Show/Hide Screens)
+   ===================================================== */
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   HOME SCREEN STYLES
+   ===================================================== */
+#home-screen {
+    text-align: center;
+}
+
+.emoji {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+h1 {
+    color: #667eea;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #888;
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.select-box {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    transition: border-color 0.3s;
+}
+
+.select-box:hover {
+    border-color: #667eea;
+}
+
+.select-box:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* =====================================================
+   LOADING SCREEN STYLES
+   ===================================== */
+#loading-screen {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #667eea;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* =====================================================
+   QUIZ SCREEN STYLES
+   ===================================================== */
+
+/* Progress Bar */
+.progress-container {
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Question Info */
+.question-number {
+    color: #667eea;
+    font-size: 0.95em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category, .difficulty {
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.category {
+    background: #e8e9ff;
+    color: #667eea;
+}
+
+.difficulty {
+    background: #ffe8e8;
+    color: #ff6b6b;
+}
+
+.difficulty.easy {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.difficulty.medium {
+    background: #fff3cd;
+    color: #ffc107;
+}
+
+.difficulty.hard {
+    background: #f8d7da;
+    color: #dc3545;
+}
+
+/* Question Text */
+.question {
+    color: #333;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+/* Answer Options */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.option {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1em;
+    text-align: left;
+}
+
+.option:hover {
+    background: #e8e9ff;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+.option.selected {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.option.correct {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.option.incorrect {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.option.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.btn {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background: #28a745;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* =====================================================
+   RESULTS SCREEN STYLES
+   ===================================== */
+#results-screen {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Score Card */
+.score-card {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.score-card h1 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.score-card p {
+    font-size: 1.2em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.score-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.percentage {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Review Section */
+.review-section {
+    margin-top: 30px;
+}
+
+.review-section h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Answer Cards */
+.answer-card {
+    background: #f8f9fa;
+    border-left: 5px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.answer-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.answer-card.correct {
+    border-left-color: #28a745;
+    background: #d4edda;
+}
+
+.answer-card.incorrect {
+    border-left-color: #dc3545;
+    background: #f8d7da;
+}
+
+.answer-card .question-text {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+}
+
+.answer-card .answer-text {
+    margin: 8px 0;
+    padding-left: 10px;
+    font-size: 0.95em;
+}
+
+.answer-card .your-answer {
+    color: #666;
+}
+
+.answer-card .correct-answer {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.answer-card .status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.answer-card .status.correct {
+    background: #28a745;
+    color: white;
+}
+
+.answer-card .status.incorrect {
+    background: #dc3545;
+    color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN (Mobile Friendly)
+   ===================================================== */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .question {
+        font-size: 1.1em;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    
+    .emoji {
+        font-size: 3em;
+    }
+}
+
+/* =====================================================
+   SCROLLBAR STYLING
+   ===================================================== */
+#results-screen::-webkit-scrollbar {
+    width: 8px;
+}
+
+#results-screen::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#results-screen::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+#results-screen::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}

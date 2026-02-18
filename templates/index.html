@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container" id="app">
+        
+        <!-- =====================================
+             SCREEN 1: Home/Welcome Screen
+        ===================================== -->
+        <div id="home-screen" class="screen active">
+            <div class="emoji">🧠</div>
+            <h1>Quiz Master</h1>
+            <p class="subtitle">Test your knowledge with our interactive quiz!</p>
+            <p class="description">Answer questions and see how well you score. Track your progress and review your answers at the end.</p>
+            
+            <div class="form-group">
+                <label for="num-questions">Select Number of Questions:</label>
+                <select id="num-questions" class="select-box">
+                    <option value="5">5 Questions</option>
+                    <option value="10" selected>10 Questions</option>
+                    <option value="15">15 Questions</option>
+                    <option value="20">20 Questions</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="startQuiz()">
+                Start Quiz
+            </button>
+        </div>
+
+        <!-- =====================================
+             SCREEN 2: Loading Screen
+        ===================================== -->
+        <div id="loading-screen" class="screen">
+            <div class="loader"></div>
+            <p class="loading-text">Loading questions...</p>
+        </div>
+
+        <!-- =====================================
+             SCREEN 3: Quiz Screen
+        ===================================== -->
+        <div id="quiz-screen" class="screen">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <!-- Question Counter -->
+            <div class="question-number" id="question-number">
+                Question 1 of 10
+            </div>
+            
+            <!-- Category and Difficulty -->
+            <div class="question-meta">
+                <span class="category" id="category">Category</span>
+                <span class="difficulty" id="difficulty">Easy</span>
+            </div>
+            
+            <!-- Question Text -->
+            <div class="question" id="question-text">
+                Question will appear here
+            </div>
+            
+            <!-- Answer Options -->
+            <div class="options" id="options">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+            
+            <!-- Submit Button -->
+            <button class="btn btn-primary" id="submit-btn" onclick="submitAnswer()" disabled>
+                Submit Answer
+            </button>
+            
+            <!-- Next Button (hidden initially) -->
+            <button class="btn btn-secondary" id="next-btn" onclick="nextQuestion()" style="display: none;">
+                Next Question
+            </button>
+        </div>
+
+        <!-- =====================================
+             SCREEN 4: Results Screen
+        ===================================== -->
+        <div id="results-screen" class="screen">
+            <!-- Score Card -->
+            <div class="score-card">
+                <div class="emoji" id="result-emoji">🎉</div>
+                <h1>Quiz Complete!</h1>
+                <p>You scored</p>
+                <div class="score-display">
+                    <span id="score">0</span> / <span id="total">0</span>
+                </div>
+                <div class="percentage" id="percentage">0%</div>
+            </div>
+            
+            <!-- Review Section -->
+            <div class="review-section">
+                <h2>Review Your Answers</h2>
+                <div id="answers-review">
+                    <!-- Answers will be dynamically inserted here -->
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="restartQuiz()">
+                    Take Another Quiz
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
